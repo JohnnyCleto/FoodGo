@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'expo-router';
 import {
   View,
   Text,
@@ -12,9 +13,11 @@ import {
 import { StatusBar } from 'expo-status-bar';
 
 
-export default  function LoginScreen() {
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
+export default function LoginScreen() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState (false)
 
   function entrar() {
@@ -97,9 +100,9 @@ export default  function LoginScreen() {
             <Text style={styles.registerText}>
               Não tem uma conta?
             </Text>
-            <TouchableOpacity>
-              <Text style={styles.registerLink}> Cadastre-se</Text>
-            </TouchableOpacity>
+                  <TouchableOpacity onPress={() => router.push('/cadastro')}>
+                    <Text style={styles.registerLink}>Cadastre-se</Text>
+                  </TouchableOpacity>
           </View>
         </View>
 
