@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import {
@@ -12,25 +13,24 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-
 export default function LoginScreen() {
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [mostrarSenha, setMostrarSenha] = useState (false)
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   function entrar() {
-    if (!email.trim() ||  !senha.trim()) {
-      Alert.alert('Atenção', 'Preencha seu e-mail e sua senha.')
+    if (!email.trim() || !senha.trim()) {
+      Alert.alert('Atenção', 'Preencha seu e-mail e sua senha.');
       return;
     }
-    Alert.alert('FoodGo', 'Login preenchido com sucesso!');
+
+    router.replace('/home');
   }
 
-  return(
-
-      <KeyboardAvoidingView
+  return (
+    <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
@@ -100,9 +100,12 @@ export default function LoginScreen() {
             <Text style={styles.registerText}>
               Não tem uma conta?
             </Text>
-                  <TouchableOpacity onPress={() => router.push('/cadastro')}>
-                    <Text style={styles.registerLink}>Cadastre-se</Text>
-                  </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/cadastro')}
+            >
+              <Text style={styles.registerLink}>Cadastre-se</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -112,7 +115,6 @@ export default function LoginScreen() {
     </KeyboardAvoidingView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

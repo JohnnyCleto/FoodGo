@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  StatusBar,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 const categorias = [
   { nome: 'Hambúrguer', emoji: '🍔' },
@@ -55,7 +55,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#FFF7F0" barStyle="dark-content" />
+      <StatusBar />
 
       <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -109,13 +109,18 @@ export default function HomeScreen() {
               <TouchableOpacity
                 key={item.nome}
                 style={styles.categoryItem}
-                onPress={() => setPesquisa(item.nome === 'Hambúrguer' ? 'Burger' : item.nome)}
+                onPress={() =>
+                  setPesquisa(
+                    item.nome === 'Hambúrguer' ? 'Burger' : item.nome
+                  )
+                }
               >
                 <View style={styles.categoryIcon}>
                   <Text style={styles.categoryEmoji}>
                     {item.emoji}
                   </Text>
                 </View>
+
                 <Text style={styles.categoryName}>
                   {item.nome}
                 </Text>
@@ -130,12 +135,15 @@ export default function HomeScreen() {
             <Text style={styles.promotionTag}>
               OFERTA ESPECIAL
             </Text>
+
             <Text style={styles.promotionTitle}>
               Seu primeiro pedido!
             </Text>
+
             <Text style={styles.promotionDescription}>
               Ganhe descontos especiais hoje.
             </Text>
+
             <Text style={styles.promotionDiscount}>
               ATÉ 30% OFF
             </Text>
@@ -150,6 +158,7 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>
               Restaurantes populares
             </Text>
+
             <TouchableOpacity>
               <Text style={styles.seeAll}>Ver todos</Text>
             </TouchableOpacity>
@@ -170,6 +179,7 @@ export default function HomeScreen() {
                 <Text style={styles.restaurantName}>
                   {item.nome}
                 </Text>
+
                 <Text style={styles.restaurantCategory}>
                   {item.categoria}
                 </Text>
@@ -178,6 +188,7 @@ export default function HomeScreen() {
                   <Text style={styles.rating}>
                     ⭐ {item.avaliacao}
                   </Text>
+
                   <Text style={styles.detailText}>
                     • {item.tempo}
                   </Text>
@@ -454,4 +465,3 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 });
-
